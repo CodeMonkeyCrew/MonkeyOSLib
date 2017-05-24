@@ -37,4 +37,13 @@ int close(int fd);
  */
 #pragma SWI_ALIAS(write,2)
 int write(int fd, const void *buf, int count);
+
+/**
+ * fork() duplicates a Process an saves its Context. The new Child-Process is set to ready.
+ * returns:
+ *      0 if the child Process is calling
+ *      PID of childProcess if parent process is calling
+ */
+#pragma SWI_ALIAS(fork, 3)
+int fork(void);
 #endif

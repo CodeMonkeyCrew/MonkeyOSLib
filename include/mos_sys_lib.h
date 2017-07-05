@@ -20,7 +20,7 @@
  * These request opening the file read-only, write-only, or read/write, respectively.
  */
 #pragma SWI_ALIAS(open, 0);
-int open(const char *pathname, int flags);
+int open(const char *pathname);
 /*
  * close() closes a file descriptor, so that it no longer refers to any file and may be reused.
  * returns:
@@ -39,11 +39,26 @@ int close(int fd);
 int write(int fd, const void *buf, int count);
 
 /**
+ * read() reads from a file and saves the read chars in the buffer buf
+ * returns:
+ *      the number of read bytes
+ */
+#pragma SWI_ALIAS(read, 3)
+int read(int file_descriptor, void* buf, int buffer_size);
+
+/**
  * fork() duplicates a Process an saves its Context. The new Child-Process is set to ready.
  * returns:
  *      0 if the child Process is calling
  *      PID of childProcess if parent process is calling
  */
-#pragma SWI_ALIAS(fork, 3)
+#pragma SWI_ALIAS(fork, 4)
 int fork(void);
+
+/**
+ * execve() changes the context of an existing Process to a function defined in a file.
+ */
+#pragma SWI_ALIAS(execve, 5)
+int execve(char* filename, char* argv[]);
+
 #endif

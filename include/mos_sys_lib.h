@@ -61,4 +61,22 @@ int fork(void);
 #pragma SWI_ALIAS(execve, 5)
 int execve(char* filename, char* argv[]);
 
+/**
+ * called from a Child-Process when its done, to turn its Parent-Process back to ready
+ */
+#pragma SWI_ALIAS(exitProc, 6)
+void exitProc(int status);
+
+/**
+ * called from a Parent-Process to block until Child-Process is done
+ */
+#pragma SWI_ALIAS(waitPid, 7)
+void waitPid(int pid);
+
+/**
+ * returns all Processes
+ */
+#pragma SWI_ALIAS(getProcs, 8)
+void getProcs(char* procStrings, int size);
+#endif
 #endif
